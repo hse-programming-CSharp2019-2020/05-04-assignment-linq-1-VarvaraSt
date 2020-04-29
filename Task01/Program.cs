@@ -56,6 +56,10 @@ namespace Task01
             {
                 Console.WriteLine("FormatException");
             }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
 
             // использовать синтаксис запросов!
             IEnumerable<int> arrQuery = from x in arr
