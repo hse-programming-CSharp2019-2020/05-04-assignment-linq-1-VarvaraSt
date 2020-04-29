@@ -41,32 +41,52 @@ namespace Task01
 
         public static void RunTesk01()
         {
-            int[] arr;
+            int[] arr = { };
             try
             {
+                char[] chrs = {' '};
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = Console.ReadLine().Split(chrs, StringSplitOptions.RemoveEmptyEntries).Select(str => int.Parse(str)).ToArray();
             }
-            
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+
             // использовать синтаксис запросов!
-            IEnumerable<int> arrQuery = from 
+            IEnumerable<int> arrQuery = from x in arr
+                                        where x < 0 || x % 2 == 0
+                                        select x;
 
             // использовать синтаксис методов!
-            IEnumerable<int> arrMethod = arr.
+            IEnumerable<int> arrMethod = arr.Where(x => (x < 0 || x % 2 == 0));
 
             try
             {
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
             }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            Console.ReadLine();
         }
 
         // Попробуйте осуществить вывод элементов коллекции с учетом разделителя, записав это ОДНИМ ВЫРАЖЕНИЕМ.
         // P.S. Есть два способа, оставьте тот, в котором применяется LINQ...
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
-           
-           
+            Console.WriteLine(collection.Select(el => el.ToString())
+                .Aggregate((a, b) => a.ToString() + separator + b.ToString()));
         }
-    }
+}
 }
