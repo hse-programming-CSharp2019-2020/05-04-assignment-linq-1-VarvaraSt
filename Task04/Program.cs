@@ -67,14 +67,20 @@ namespace Task04
             }
 
             // использовать синтаксис методов! SQL-подобные запросы не писать!
+            try
+            {
+                int arrAggregate = ((int)Math.Pow(-1, arr.Length + 1)) *
+                    arr.Aggregate((prev, next) => (-1) * prev + next) + 5;
 
-            int arrAggregate = ((int)Math.Pow(-1, arr.Length + 1)) * 
-                arr.Aggregate((prev, next) => (-1) * prev + next) + 5;
+                int arrMyAggregate = MyClass.MyAggregate(arr);
 
-            int arrMyAggregate = MyClass.MyAggregate(arr);
-
-            Console.WriteLine(arrAggregate);
-            Console.WriteLine(arrMyAggregate);
+                Console.WriteLine(arrAggregate);
+                Console.WriteLine(arrMyAggregate);
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
 
         }
     }
@@ -85,7 +91,7 @@ namespace Task04
         {
             int sum = 5;
             int sign = -1;
-            Array.ForEach(arr, x => { sign *= -1; sum += sign * x; });
+            Array.ForEach(arr, x => { sign *= -1; if (sum > int.MaxValue - sign * x) throw new OverflowException(); sum += sign * x; });
             return sum;
         }
     }
