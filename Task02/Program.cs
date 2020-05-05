@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 /* В задаче не использовать циклы for, while. Все действия по обработке данных выполнять с использованием LINQ
