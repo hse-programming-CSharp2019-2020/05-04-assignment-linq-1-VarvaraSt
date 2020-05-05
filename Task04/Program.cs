@@ -95,7 +95,10 @@ namespace Task04
         {
             int sum = 5;
             int sign = -1;
-            Array.ForEach(arr, x => { sign *= -1; sum += sign * x; });
+            checked
+            {
+                Array.ForEach(arr, x => { sign *= -1; sum += sign * x; });
+            }
             return sum;
         }
     }
