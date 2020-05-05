@@ -47,6 +47,7 @@ namespace Task04
                 char[] chrs = { ' ' };
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
                 arr = Console.ReadLine().Split(chrs, StringSplitOptions.RemoveEmptyEntries).Select(str => int.Parse(str)).ToArray();
+                if (arr.Length == 0) throw new InvalidOperationException();
             }
             catch (ArgumentException)
             {
@@ -59,6 +60,10 @@ namespace Task04
             catch (OverflowException)
             {
                 Console.WriteLine("OverflowException");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
             }
 
             // использовать синтаксис методов! SQL-подобные запросы не писать!
