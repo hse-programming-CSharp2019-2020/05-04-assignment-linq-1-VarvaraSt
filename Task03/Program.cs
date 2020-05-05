@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 /*Все действия по обработке данных выполнять с использованием LINQ
  * 
@@ -62,6 +63,8 @@ namespace Task03
     {
         static void Main(string[] args)
         {
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
             int N = 0;
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
@@ -71,7 +74,7 @@ namespace Task03
                 for (int i = 0; i < N; i++)
                 {
                     string[] str = Console.ReadLine().Split(chr, StringSplitOptions.RemoveEmptyEntries);
-                    computerInfoList.Add(new ComputerInfo { Owner = str[0], Year = int.Parse(str[1]), ComputerManufacturer = (Manufacturer)int.Parse(str[2])});
+                    computerInfoList.Add(new ComputerInfo { Owner = str[0], Year = int.Parse(str[1]), ComputerManufacturer = (Manufacturer)int.Parse(str[2]) });
                 }
             }
             catch (ArgumentException)
@@ -119,11 +122,17 @@ namespace Task03
     {
         int year;
         Manufacturer manufacturer;
-        public int Year { get { return year; }
-            set { if (value < 1970 || value > 2020) throw new ArgumentException(); year = value; } }
+        public int Year
+        {
+            get { return year; }
+            set { if (value < 1970 || value > 2020) throw new ArgumentException(); year = value; }
+        }
         public string Owner { get; set; }
-        public Manufacturer ComputerManufacturer { get => manufacturer;
-            set { if (value < Manufacturer.Dell || value > Manufacturer.Microsoft) throw new ArgumentException(); manufacturer = value; } }
-        
+        public Manufacturer ComputerManufacturer
+        {
+            get => manufacturer;
+            set { if (value < Manufacturer.Dell || value > Manufacturer.Microsoft) throw new ArgumentException(); manufacturer = value; }
+        }
+
     }
 }
