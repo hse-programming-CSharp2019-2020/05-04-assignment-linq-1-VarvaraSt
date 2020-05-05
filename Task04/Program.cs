@@ -81,6 +81,10 @@ namespace Task04
             {
                 Console.WriteLine("OverflowException");
             }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
 
         }
     }
@@ -91,7 +95,7 @@ namespace Task04
         {
             int sum = 5;
             int sign = -1;
-            Array.ForEach(arr, x => { sign *= -1; if (sum > int.MaxValue - sign * x) throw new OverflowException(); sum += sign * x; });
+            Array.ForEach(arr, x => { sign *= -1; sum += sign * x; });
             return sum;
         }
     }
