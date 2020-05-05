@@ -82,6 +82,10 @@ namespace Task03
             {
                 Console.WriteLine("FormatException");
             }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
 
 
             // выполните сортировку одним выражением
