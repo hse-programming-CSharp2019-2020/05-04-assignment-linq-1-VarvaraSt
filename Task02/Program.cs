@@ -65,6 +65,8 @@ namespace Task02
 
             try
             {
+                if (!filteredCollection.ToList().TrueForAll(x => x <= Math.Sqrt(int.MaxValue))) throw new OverflowException();
+
                 // использовать статическую форму вызова метода подсчета среднего
                 double averageUsingStaticForm = Enumerable.Average<int>(filteredCollection, x => x * x);
                 Console.WriteLine($"{averageUsingStaticForm:F3}".Replace(".", ","));
@@ -82,6 +84,10 @@ namespace Task02
             catch (InvalidOperationException)
             {
                 Console.WriteLine("InvalidOperationException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
             }
 
         }
