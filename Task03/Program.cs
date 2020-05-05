@@ -90,9 +90,9 @@ namespace Task03
 
             // выполните сортировку одним выражением
             var computerInfoQuery = from x in computerInfoList
-                                    orderby x.Owner descending
-                                    orderby x.ComputerManufacturer.ToString()
                                     orderby x.Year descending
+                                    orderby x.ComputerManufacturer.ToString()
+                                    orderby x.Owner descending
                                     select x;
 
             PrintCollectionInOneLine(computerInfoQuery);
